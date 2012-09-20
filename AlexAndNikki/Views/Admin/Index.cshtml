@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<div id="pageTitle">
+    Administrative Tools</div>
+<div class="form" style="width: 300px; font-family: Arial;">
+    - @Html.ActionLink("Logout", "LogOut", "User")
+    <br />
+    <br />
+    - @Html.ActionLink("Manage Blog Posts", "ManageBlogPosts")
+    <br />
+    <br />
+    - Manage Photo Albums <span style="font-size: 10px;color: #ff0000;">(under construction)</span>@*@Html.ActionLink("Manage Photo Albums", "ManagePhotoAlbums")*@
+    <br />
+    <br />
+    - @Html.ActionLink("Manage Wedding Invites", "ManageInvites")
+    <br />
+    <br />
+    - @Html.ActionLink("RSVP Status", "RSVPStatus")
+</div>

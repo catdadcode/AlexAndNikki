@@ -1,0 +1,60 @@
+﻿@model AlexAndNikki.Models.BlogIndexViewModel
+@using AlexAndNikki.Models;
+@{
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<script type="text/javascript">
+    $(function ()
+    {
+        //Display notice if not hidden
+//        if ($.readCookie('noticehidden') == null)
+//        {
+//            $('#notice').parent().show('drop', { direction: 'left' }, 2000)
+//                .data('bounceinterval', setInterval(function ()
+//                {
+//                    $('#notice').parent().effect("bounce", { times: 3, distance: 10 }, 300);
+//                }, 5000));
+//            $('#dismissnotice').click(function (e)
+//            {
+//                clearInterval($('#notice').parent().data('bounceinterval'));
+//                $.setCookie('noticehidden', 'true', { duration: 365 });
+//                $('#notice').parent().hide('drop', { direction: 'right' }, 2000);
+//                e.preventDefault();
+//                return false;
+//            });
+//        }
+    });
+</script>
+<div style="text-align: center; display: none;">
+    <div id="notice">
+        <div style="font-weight: bold; font-size: 20px;">
+            Have you received an invitation?
+        </div>
+        @Html.ActionLink("Click here to RSVP", "RSVP", "Wedding")
+        <br />
+        <a id="dismissnotice" style="font-size: 10px;" href="#">(hide this message) </a>
+    </div>
+</div>
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+</div>
+@foreach (var blogPost in Model.BlogPosts)
+{
+    <div class="blogSummary">
+        @Html.ActionLink(blogPost.Title, "Post", new { Id = blogPost.FriendlyUrl }, new { Class = "blogTitle", Id = blogPost.FriendlyUrl })
+        <br />
+        <div class="subInfo">
+            By
+            @Html.ActionLink(blogPost.Author, "Profile", "User", new { Id = blogPost.Author }, null)
+            on
+            @blogPost.Date.ToString("D")
+        </div>
+        <div class="summary">
+            @Html.Raw(blogPost.Summary)...
+            @Html.ActionLink("(more)", "Post", new { Id = blogPost.FriendlyUrl }, null)
+        </div>
+    </div>
+}
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+</div>

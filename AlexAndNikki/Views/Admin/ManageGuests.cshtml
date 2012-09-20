@@ -1,0 +1,129 @@
+﻿@model AlexAndNikki.Models.Invite
+@using AlexAndNikki.Models;
+@{
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<script type="text/javascript">
+    $(function ()
+    {
+        $('.deleteGuest').click(function (e)
+        {
+            if (!confirm('Are you sure you want to delete this guest?'))
+            {
+                e.preventDefault();
+                return false;
+            }
+        });
+    });
+</script>
+<style type="text/css">
+    table#guests
+    {
+        margin: auto;
+        border: solid 1px #aa0000;
+        background-color: #ffffff;
+    }
+    table#guests td
+    {
+        text-align: center;
+    }
+    table#guests th
+    {
+        font-family: Arial;
+    }
+    table#guests table.options td
+    {
+        padding: 0px 10px 0px 10px;
+    }
+</style>
+<div>
+    @Html.ActionLink("<< Back to Manage Invites", "ManageInvites")
+</div>
+<div id="pageTitle">
+    Manage Guests
+</div>
+<table id="guests" border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        <td colspan="6" style="text-align: center;">
+            <a id="AddNew" href="@Url.Action("AddGuest", new { Id = Model.Id })">
+                <img style="width: 20px; border: none;" src="@Url.Content("~/Content/images/addnew.png")" />
+                Add New Guest</a>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            Attending Ceremony
+        </th>
+        <th>
+            Attending Reception
+        </th>
+        <th>
+            Options
+        </th>
+    </tr>
+    @foreach (Guest guest in Model.Guests.OrderByDescending(x => x.PrimaryGuest).ThenBy(x => x.LastName).ThenBy(x => x.FirstName))
+    {
+        <tr>
+            <td>
+                @if (guest.PrimaryGuest)
+                {
+                    <b>@guest.FullName()</b>
+                }
+                else
+                {
+                    <span>@guest.FullName()</span>
+                }
+            </td>
+            <td>
+                <a href="mailto:@guest.Email">@guest.Email</a>
+            </td>
+            <td>
+                @guest.Phone
+            </td>
+            <td>
+                @if (guest.InvitedToCeremony)
+                {
+                    @guest.ConfirmCeremony
+                }
+                else
+                {
+                    <span>Not invited</span>
+                }
+            </td>
+            <td>
+                @guest.ConfirmReception
+            </td>
+            <td style="text-align: center;">
+                <table class="options" style="margin: auto;">
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("EditGuest", new { Id = guest.GuestID })">
+                                <img title="Edit Guest" style="width: 20px; border: none;" src="@Url.Content("~/Content/images/edit.png")" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("DeleteGuest", new { Id = guest.GuestID })" class="deleteGuest">
+                                <img title="Delete Guest" style="width: 20px;border: none;" src="@Url.Content("~/Content/images/delete.gif")" />
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    }
+    @if (Model.Guests.Count == 0)
+    {
+        <tr>
+            <td colspan="6">No guests have been added yet.</td>
+        </tr>
+    }
+</table>

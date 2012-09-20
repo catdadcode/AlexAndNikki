@@ -1,0 +1,29 @@
+﻿@model AlexAndNikki.Models.Invite
+@{
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+@if (ViewData["type"] == "edit")
+{
+    <div id="pageTitle">
+        Edit Wedding Invite
+    </div>
+}
+else
+{
+    <div id="pageTitle">
+        Add Wedding Invite
+    </div>
+}
+<div class="form" style="width: 300px;">
+    @using (Html.BeginForm())
+    {
+        <text>
+        Related Family:<br />
+        @Html.DropDownListFor(x => x.RelatedFamily, (SelectList)ViewBag.SelectList)
+        <br />
+        @Html.ValidationMessageFor(x => x.RelatedFamily, null, new { style = "color: #ff0000;" })
+        <br />
+        <input type="submit" value="Save" />&nbsp;@Html.ActionLink("Cancel", "ManageInvites")
+        </text>
+    }
+</div>

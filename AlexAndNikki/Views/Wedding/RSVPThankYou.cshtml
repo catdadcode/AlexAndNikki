@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "RSVPThankYou";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<script type="text/javascript">
+    $(function ()
+    {
+        $('#result').parent().show('drop', { direction: 'up' }, 2000);
+    });
+</script>
+<div style="text-align: center; display: none;">
+    <div id="result" class="form" style="width: 500px; text-align: center; font-family: Arial;">
+        Thank you for letting us know your plans!<br />
+        <br />
+        Do you need additional information about the wedding?<br />
+        Are you wondering what to get us?<br />
+        <br />
+        @Html.ActionLink("Click here to view wedding details", "Information")
+        <br />
+        <br />
+        OR
+        <br />
+        <br />
+        @Html.ActionLink("Click here to return to your invite", "RSVP", new { Id = ViewBag.InviteId })
+    </div>
+</div>
+

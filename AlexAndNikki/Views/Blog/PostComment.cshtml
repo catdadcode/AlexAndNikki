@@ -1,0 +1,17 @@
+﻿@model AlexAndNikki.Models.BlogPostComment
+@using AlexAndNikki.Helpers;
+<div class="postComment">
+    @Html.Raw(Model.Comment.FormatBody())
+    <br />
+    <br />
+    @if (!string.IsNullOrEmpty(Model.Website))
+    {
+        <div class="subInfo">
+            Posted by <a href="@Model.Website">@Model.Name</a> on @Model.Date.ToString("D")</div>
+    }
+    else
+    {
+        <div class="subInfo">
+            Posted by @Model.Name on @Model.Date.ToString("D")</div>
+    }
+</div>

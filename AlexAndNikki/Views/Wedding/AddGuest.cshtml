@@ -1,0 +1,85 @@
+﻿@model AlexAndNikki.Models.Guest
+@using AlexAndNikki.Helpers;
+@{
+    ViewBag.Title = "AddGuest";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<div id="pageTitle">
+    Add A New Guest To Your Invitation
+</div>
+<div class="form" style="width: 500px; padding: 15px;">
+    @using (Html.BeginForm())
+    {
+        <text>
+        @Html.HiddenFor(x => x.InviteID)
+        First Name:<br />
+        @Html.TextBoxFor(x => x.FirstName, new { style = "width: 300px;" })
+        @Html.ValidationMessageFor(x => x.FirstName)
+        <br />
+        Last Name:<br />
+        @Html.TextBoxFor(x => x.LastName, new { style = "width: 300px;" })
+        @Html.ValidationMessageFor(x => x.LastName)
+        <br />
+        Email:<br />
+        @Html.TextBoxFor(x => x.Email, new { style = "width: 300px;" })
+        @Html.ValidationMessageFor(x => x.Email)
+        <br />
+        Phone:<br />
+        @Html.TextBoxFor(x => x.Phone, new { style = "width: 150px;" })
+        @Html.ValidationMessageFor(x => x.Phone)
+        <br />
+        <br />
+        Address:<br />
+        @Html.TextBoxFor(x => x.Address, new { style = "width: 450px;" })
+        @Html.ValidationMessageFor(x => x.Address)
+        <br />
+        City:<br />
+        @Html.TextBoxFor(x => x.City, new { style = "width: 300px;" })
+        @Html.ValidationMessageFor(x => x.City)
+        <br />
+        State:<br />
+        @Html.StateDropDownListFor(x => x.State)
+        @Html.ValidationMessageFor(x => x.State)
+        <br />
+        ZipCode:<br />
+        @Html.TextBoxFor(x => x.ZipCode, new { style = "width: 100px;" })
+        @Html.ValidationMessageFor(x => x.ZipCode)
+        <br />
+        <br />
+        @if (Model.Invite.RelatedFamily.ToLower() == "sommer")
+        {
+            <span>Relation To Bride:</span><br />
+        }
+        else
+        {
+            <span>Relation To Groom:</span><br />
+        }
+        @Html.DropDownListFor(x => x.Relationship, new SelectList(new Dictionary<string, string>
+        {
+            {"none", "Please Choose"},
+            {"Father", "Father"},
+            {"FatherInLaw", "Father In-Law"},
+            {"Mother", "Mother"},
+            {"MotherInLaw", "Mother In-Law"},
+            {"Brother", "Brother"},
+            {"BrotherInLaw", "Brother In-Law"},
+            {"Sister", "Sister"},
+            {"SisterInLaw", "Sister In-Law"},
+            {"Grandfather", "Grandfather"},
+            {"Grandmother", "Grandmother"},
+            {"Uncle", "Uncle"},
+            {"Aunt", "Aunt"},
+            {"Nephew", "Nephew"},
+            {"Niece", "Niece"},
+            {"Cousin", "Cousin"},
+            {"Friend", "Friend"},
+            {"Other", "Other"}
+        }, "key", "value"))
+        @Html.ValidationMessageFor(x => x.Relationship)
+        <br />
+        <br />
+        <input type="submit" value="Save" />&nbsp;@Html.ActionLink("Cancel", "ManageGuests", new { Id = Model.InviteID })
+        </text>
+    }
+</div>
+

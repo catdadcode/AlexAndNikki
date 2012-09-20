@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Wedding Details";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<script type="text/javascript">
+    $(function ()
+    {
+        $('.pageNavLink').click(function (e)
+        {
+            $('.navPane').slideUp();
+            var sectionName = $(this).attr('id');
+            $('#pageTitle').fadeOut().text(sectionName).fadeIn();
+            var divId = '#div' + sectionName;
+            $(divId).slideDown();
+            e.preventDefault();
+        });
+    });
+</script>
+<div style="width:250px; margin: auto;"><fb:like show_faces="false"></fb:like></div>
+<br />
+<div class="form" style="width: 300px; text-align: center; font-size: 20px; margin-bottom: 15px;">
+    -= <a id="Where" class="pageNavLink" href="#">Where</a> -=- <a id="When" class="pageNavLink"
+        href="#">When</a> -=- <a id="What" class="pageNavLink" href="#">What</a> =-
+</div>
+<div id="pageTitle">
+    Please Choose A Section
+</div>
+<div id="divWhere" class="form navPane" style="width: 600px; text-align: center;
+    font-size: 20px; display: none;">
+    <div style="font-size: 30px;">
+        -= CEREMONY =-
+    </div>
+    <br />
+    We will be getting married at the
+    <br />
+    <a href="http://www.mgmgrand.com/amenities/wedding-chapel.aspx">MGM Forever Grand Wedding
+        Chapel </a>
+    <br />
+    Las Vegas, Nevada.
+    <br />
+    <br />
+    <a href="http://www.mgmgrand.com/amenities/wedding-chapel.aspx">
+        <img style="border: none;" src="@Url.Content("~/Content/images/forevergrandchapel.jpg")" /><br />
+    </a>
+    <br />
+    MGM Grand Hotel & Casino
+    <br />
+    3799 Las Vegas Boulevard South
+    <br />
+    Las Vegas, Nevada 89109
+    <br />
+    <br />
+    <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0"
+        marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=mgm+grand+las+vegas&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=50.157795,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=MGM+Grand&amp;ll=36.102407,-115.167709&amp;spn=0.097332,0.154324&amp;z=13&amp;iwloc=A&amp;output=embed">
+    </iframe>
+    <br />
+    <small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=mgm+grand+las+vegas&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=50.157795,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=MGM+Grand&amp;ll=36.102407,-115.167709&amp;spn=0.097332,0.154324&amp;z=13&amp;iwloc=A"
+        style="color: #0000FF; text-align: left">View Larger Map</a></small>
+    <br />
+    <br />
+    <br />
+    <div style="font-size: 30px;">
+        -= RECEPTION =-
+    </div>
+    <br />
+    The reception will be held at:
+    <br />
+    <br />
+    The Sommer Resort
+    <br />
+    2214 Midvale Terrace
+    <br />
+    Henderson, Nevada 89014
+    <br />
+    <br />
+    <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0"
+        marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=2214+Midvale+Terrace,+Henderson,+NV&amp;aq=0&amp;sll=36.128724,-115.169163&amp;sspn=0.097332,0.154324&amp;ie=UTF8&amp;hq=&amp;hnear=2214+Midvale+Terrace,+Henderson,+Clark,+Nevada+89074&amp;ll=36.043872,-115.084483&amp;spn=0.012613,0.01929&amp;z=14&amp;iwloc=A&amp;output=embed">
+    </iframe>
+    <br />
+    <small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=2214+Midvale+Terrace,+Henderson,+NV&amp;aq=0&amp;sll=36.128724,-115.169163&amp;sspn=0.097332,0.154324&amp;ie=UTF8&amp;hq=&amp;hnear=2214+Midvale+Terrace,+Henderson,+Clark,+Nevada+89074&amp;ll=36.043872,-115.084483&amp;spn=0.012613,0.01929&amp;z=14&amp;iwloc=A"
+        style="color: #0000FF; text-align: left">View Larger Map</a></small>
+</div>
+<div id="divWhen" class="form navPane" style="width: 600px; text-align: center; font-size: 20px;
+    display: none;">
+    <div style="font-size: 30px;">
+        -= CEREMONY =-
+    </div>
+    <br />
+    Saturday, April 30th 2011
+    <br />
+    4:30pm
+    <br />
+    <br />
+    Duration: Approximately 30 minutes.
+    <br />
+    <br />
+    <br />
+    <div style="font-size: 30px;">
+        -= RECEPTION =-
+    </div>
+    <br />
+    Saturday, April 30th 2011
+    <br />
+    6:30pm - 8:30pm
+</div>
+<div id="divWhat" class="form navPane" style="width: 600px; text-align: center; font-size: 20px;
+    display: none;">
+    <div style="font-size: 30px;">
+        -= REGISTRY =-
+    </div>
+    <br />
+    If you are planning to bring a gift for the happy couple, but aren't sure what to
+    get then you will be happy to know that we are registered at Target for everyone's
+    convenience.
+    <br />
+    <br />
+    <a href="https://www.target.com/registry/wedding/126GZUKHRYL1/guestview">Click here
+        to view the registry!</a>
+    <br />
+    <br />
+    <div style="font-size: 30px;">
+        -= CEREMONY =-
+    </div>
+    <br />
+    The ceremony will last about a half hour. If you are attending, note that the dress
+    is formal. There are 70 seats available. At the moment all seats are spoken for,
+    but if you would like to attend the ceremony and were not invited then be sure to
+    keep an eye on our blog. As people RSVP we will have a better idea of how many seats
+    will actually be taken and can offer seats as they become available.
+    <br />
+    <br />
+    <br />
+    <div style="font-size: 30px;">
+        -= RECEPTION =-
+    </div>
+    <br />
+    The reception is taking place just 10 minutes away from the MGM Grand at The Sommer
+    Resort, the home of Reggie and David Sommer (Aunt and Uncle of the bride). The event
+    will be catered by Cold Stone; ice cream and sandwiches will be available. There
+    is a pool and a decently sized patio. It is a gorgeous place and the perfect spot
+    for photos to be taken, so bring your cameras!
+</div>

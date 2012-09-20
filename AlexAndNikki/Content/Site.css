@@ -1,0 +1,236 @@
+﻿body
+{
+    background-color: #cccccc;
+    background-image: url(images/texture.jpg);
+}
+
+#frame
+{
+    width: 1000px;
+    padding: 5px;
+    margin: auto;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+    background: url(images/weddingbg.jpg) no-repeat #ffffff;
+    background-color: #ffffff;
+}
+
+#banner
+{
+    min-height: 250px;
+    position: relative;
+}
+
+#nav
+{
+    padding: 15px;
+    border-top: solid 2px #aa0000;
+    font-family: Arial;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+#nav td
+{
+    vertical-align: middle;
+    text-align: center;
+    padding: 10px;
+}
+
+#nav a
+{
+    color: #aa0000;
+    text-decoration: none;
+    padding: 5px;
+}
+
+#nav a:hover, #nav .navLinkSelected
+{
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: #aa0000;
+}
+
+#footer
+{
+    padding: 10px;
+    min-height: 25px;
+    border-top: solid 0px #aa0000;
+    text-align: right;
+}
+
+#mainContent a.blogTitle:link, #mainContent a.blogTitle:visited
+{
+    font-size: 25px;
+    padding: 3px;
+    color: #aa0000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#mainContent a.blogTitle:hover
+{
+    background-color: #aa0000;
+    color: #ffffff;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#mainContent
+{
+    padding: 10px;
+}
+
+#mainContent a:link, #mainContent a:visited
+{
+    color: #3333ff;
+    text-decoration: none;
+}
+
+#mainContent a:hover
+{
+    color: #9999ff;
+}
+
+#pageTitle
+{
+    font-size: 25px;
+    text-align: center;
+    color: #555555;
+    font-family: Arial;
+    margin-bottom: 15px;
+}
+
+.subInfo
+{
+    padding-left: 3px;
+    margin-top: 2px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.summary
+{
+    font-size: 13px;
+    padding-left: 3px;
+    padding-top: 10px;
+}
+
+.blogSummary
+{
+    margin-bottom: 15px;
+    border: dashed 1px #aa0000;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+    padding: 15px;
+}
+
+.bannerImage
+{
+    position: absolute;
+    padding: 5px;
+    border: solid 1px #333333;
+    background-color: #ffffff;
+}
+
+#mainContent .pager
+{
+    text-align: right;
+    font-size: 15px;
+    color: #aa0000;
+    padding-right: 25px;
+    margin-bottom: 15px;
+}
+
+#mainContent .pager a:link, #mainContent .pager a:visited
+{
+    color: #aa0000;
+    padding: 3px;
+}
+
+#mainContent .pager a:hover, #mainContent .pager a.pageLinkSelected
+{
+    background-color: #aa0000;
+    color: #ffffff;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#AlexAndNikkiBanner
+{
+    border: none;
+}
+
+.postTitle
+{
+    font-size: 25px;
+    padding: 3px;
+    color: #aa0000;
+    font-weight: bold;
+}
+
+.postComment
+{
+    border: dotted 1px #aa0000;
+    padding: 10px;
+    margin-bottom: 10px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+}
+
+.addComment
+{
+    background-color: #ffffdd;
+    width: 405px;
+    border: solid 1px #aa0000;
+    padding: 10px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+}
+
+.field-validation-error
+{
+    color: #ff0000;   
+}
+
+.input-validation-error
+{
+    border-color: #ff0000;   
+}
+
+#notice
+{
+    font-family: Arial;
+    width: 400px;
+    margin: auto;
+    border: solid 1px #000000;
+    background-color: #ffffcc;
+    text-align: center;
+    padding: 5px;   
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    color: #aa0000;
+    display: inline-block;
+}
+
+div.form
+{
+   margin: auto;
+   border: solid 1px #000000;
+   background-color: #ffffff;
+   padding: 15px;
+   border-radius: 25px;
+   -moz-border-radius: 25px;
+   -webkit-border-radius: 25px;
+}

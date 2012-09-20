@@ -1,0 +1,275 @@
+﻿@model AlexAndNikki.Models.RSVPStatusViewModel
+@using AlexAndNikki.Models;
+@{
+    ViewBag.Title = "RSVPStatus";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<style type="text/css">
+    table#invites
+    {
+        margin: auto;
+        border: solid 1px #aa0000;
+        background-color: #ffffff;
+    }
+    table#invites th, table.legendTable th
+    {
+        font-family: Arial;
+    }
+    table.legendTable div
+    {
+        text-align: center;
+    }
+    table.legendTable
+    {
+        margin: auto;
+    }
+    table.legendTable td, table.legendTable th
+    {
+        text-align: center;
+    }
+    table#invites table.options td
+    {
+        padding: 0px 10px 0px 10px;
+    }
+    a.showMore
+    {
+        font-size: 12px;
+    }
+    .guestRow
+    {
+        background-color: #ffffdd;
+    }
+    .guestRow > td
+    {
+        padding-left: 25px;
+    }
+    .confirmBox
+    {
+        font-weight: bold;
+        text-align: center;
+        width: 50px;
+        height: 15px;
+        display: inline-block;
+    }
+    .legend
+    {
+        width: 500px;
+        padding: 10px;
+        border: solid 1px #000000;
+        text-align: left;
+    }
+</style>
+<script type="text/javascript">
+    $(function ()
+    {
+        $(".showMore").click(function (e)
+        {
+            var inviteId = $(this).attr('id');
+            if ($('.' + inviteId + ':visible').length == 0)
+            {
+                $('.' + inviteId).fadeIn();
+                $(this).text("- (Hide Status)");
+            }
+            else
+            {
+                $('.' + inviteId).fadeOut();
+                $(this).text("+ (Show Status)");
+            }
+            e.preventDefault();
+        });
+        $("#showAll").click(function (e)
+        {
+            $('.guestRow').fadeIn();
+            $('.showMore').text("- (Hide Status)");
+            e.preventDefault();
+        });
+        $("#showNone").click(function (e)
+        {
+            $('.guestRow').fadeOut();
+            $('.showMore').text("+ (Show Status)");
+            e.preventDefault();
+        });
+    });
+</script>
+<div>
+    @Html.ActionLink("<< Back to Administration Panel", "Index")
+</div>
+<div id="pageTitle">
+    Guests RSVP Status
+</div>
+<div class="legend form">
+    <div style="text-align: center; font-size: 30px; font-family: Arial; color: #555555;">
+        Summary
+    </div>
+    <br />
+    Total Invites: @Model.Invites.Count()<br />
+    Total Invited Guests: @Model.TotalGuestCount<br />
+    Total Invited To Ceremony: @Model.InvitedToCeremonyCount<br />
+    <br />
+    <table class="legendTable" style="width: 100%;" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>
+                Color
+            </th>
+            <th>
+                Ceremony
+            </th>
+            <th>
+                Reception
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <div style="background-color: #00dd00;">
+                    YES
+                </div>
+            </td>
+            <td>
+                @Model.CeremonyYESCount Guest(s)
+            </td>
+            <td>
+                @Model.ReceptionYESCount Guest(s)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="background-color: #dd0000;">
+                    NO
+                </div>
+            </td>
+            <td>
+                @Model.CeremonyNOCount Guest(s)
+            </td>
+            <td>
+                @Model.ReceptionNOCount Guest(s)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="background-color: #dddd00;">
+                    MAYBE
+                </div>
+            </td>
+            <td>
+                @Model.CeremonyMAYBECount Guest(s)
+            </td>
+            <td>
+                @Model.ReceptionMAYBECount Guest(s)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="border: dotted 1px #000000;">
+                    ?
+                </div>
+            </td>
+            <td>
+                @Model.CeremonyNoAnswerCount Guest(s)
+            </td>
+            <td>
+                @Model.ReceptionNoAnswerCount Guest(s)
+            </td>
+        </tr>
+    </table>
+</div>
+<br />
+<table id="invites" cellpadding="10" cellspacing="0">
+    <tr>
+        <td colspan="3">
+            <div style="text-align: center; font-size: 30px; font-family: Arial; color: #555555;">
+                Details
+            </div>
+            <div style="text-align: center;">
+                Show: <a id="showAll" href="#">ALL</a> | <a id="showNone" href="#">NONE</a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Guest
+        </th>
+        <th>
+            Attending Ceremony?
+        </th>
+        <th>
+            Attending Reception?
+        </th>
+    </tr>
+    @foreach (Invite invite in Model.Invites)
+    {
+        <tr>
+            <td>
+                <b>@invite.PrimaryContactNames()</b>
+                <br />
+                <a id="@invite.Id" class="showMore" href="#">+ (Show Status)</a>
+            </td>
+            <td>
+            </td>
+        </tr>
+                  foreach (Guest guest in invite.Guests.OrderBy(x => x.FirstName))
+                  {
+        <tr class="@invite.Id guestRow" style="display:none;">
+            <td>
+                @guest.FullName()
+            </td>
+            <td style="text-align: center;">
+                @{
+                   if (guest.InvitedToCeremony)
+                   {
+                       switch (guest.ConfirmCeremony.ToUpper())
+                       {
+                           case "YES":
+                                <div class="confirmBox" style="background-color: #00dd00;">
+                                </div>
+                               break;
+                           case "NO":
+                                <div class="confirmBox" style="background-color: #dd0000;">
+                                </div>
+                               break;
+                           case "MAYBE":
+                                <div class="confirmBox" style="background-color: #dddd00;">
+                                </div>
+                               break;
+                           default:
+                                <div class="confirmBox" style="border: dotted 1px #000000;">
+                                    ?
+                                </div>
+                               break;
+                       }
+                   }
+                   else
+                   {
+                       <div class="confirmBox">
+                            n/a
+                       </div>
+                   }
+                }
+            </td>
+            <td style="text-align: center;">
+                @{
+                   switch (guest.ConfirmReception.ToUpper())
+                   {
+                       case "YES":
+                            <div class="confirmBox" style="background-color: #00dd00;">
+                            </div>
+                           break;
+                       case "NO":
+                            <div class="confirmBox" style="background-color: #dd0000;">
+                            </div>
+                           break;
+                       case "MAYBE":
+                            <div class="confirmBox" style="background-color: #dddd00;">
+                            </div>
+                           break;
+                       default:
+                            <div class="confirmBox" style="border: dotted 1px #000000;">
+                                ?
+                            </div>
+                           break;
+                   }
+                }
+            </td>
+        </tr>
+                  }
+    }
+</table>

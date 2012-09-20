@@ -1,0 +1,35 @@
+﻿@model AlexAndNikki.Models.BlogPost
+@{
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+@if (ViewData["type"] == "edit")
+{
+    <div id="pageTitle">
+        Edit Blog Post
+    </div>
+}
+else
+{
+    <div id="pageTitle">
+        Add Blog Post
+    </div>
+}
+<div class="form" style="width: 500px;">
+    @using (Html.BeginForm())
+    {
+        <text> Title:<br />
+        @Html.TextBoxFor(x => x.Title, new { Style = "Width: 495px;" })
+        <br />
+        <br />
+        Summary:<br />
+        @Html.TextAreaFor(x => x.Summary, new { Style = "Width: 495px; Height: 50px;" })
+        <br />
+        <br />
+        Body:<br />
+        @Html.TextAreaFor(x => x.Body, new { Style = "Height: 250px; Width: 495px;" })
+        <br />
+        <br />
+        <input type="submit" value="Save" />&nbsp;@Html.ActionLink("Cancel", "ManageBlogPosts")
+        </text>
+    }
+</div>

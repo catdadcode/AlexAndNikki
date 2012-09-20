@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AlexAndNikkiDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="AlexAndNikkiDBModelStoreContainer">
+          <EntitySet Name="BlogPostComments" EntityType="AlexAndNikkiDBModel.Store.BlogPostComments" store:Type="Tables" Schema="Chevex" />
+          <EntitySet Name="BlogPosts" EntityType="AlexAndNikkiDBModel.Store.BlogPosts" store:Type="Tables" Schema="Chevex" />
+          <EntitySet Name="Guests" EntityType="AlexAndNikkiDBModel.Store.Guests" store:Type="Tables" Schema="Chevex" />
+          <EntitySet Name="Invites" EntityType="AlexAndNikkiDBModel.Store.Invites" store:Type="Tables" Schema="Chevex" />
+          <EntitySet Name="Photos" EntityType="AlexAndNikkiDBModel.Store.Photos" store:Type="Tables" Schema="Chevex" />
+          <EntitySet Name="Profiles" EntityType="AlexAndNikkiDBModel.Store.Profiles" store:Type="Tables" Schema="Chevex" />
+          <EntitySet Name="StaticPages" EntityType="AlexAndNikkiDBModel.Store.StaticPages" store:Type="Tables" Schema="Chevex" />
+          <EntitySet Name="Users" EntityType="AlexAndNikkiDBModel.Store.Users" store:Type="Tables" Schema="Chevex" />
+          <AssociationSet Name="FK_BlogPostComments_BlogPosts" Association="AlexAndNikkiDBModel.Store.FK_BlogPostComments_BlogPosts">
+            <End Role="BlogPosts" EntitySet="BlogPosts" />
+            <End Role="BlogPostComments" EntitySet="BlogPostComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogPosts_Users" Association="AlexAndNikkiDBModel.Store.FK_BlogPosts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BlogPosts" EntitySet="BlogPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profiles_Users" Association="AlexAndNikkiDBModel.Store.FK_Profiles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Profiles" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WeddingInvitees_WeddingInvites" Association="AlexAndNikkiDBModel.Store.FK_WeddingInvitees_WeddingInvites">
+            <End Role="Invites" EntitySet="Invites" />
+            <End Role="Guests" EntitySet="Guests" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BlogPostComments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BlogPostId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Website" Type="nvarchar" MaxLength="200" />
+          <Property Name="Comment" Type="nvarchar" Nullable="false" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="BlogPosts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Author" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Summary" Type="nvarchar(max)" />
+          <Property Name="FriendlyUrl" Type="nvarchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Guests">
+          <Key>
+            <PropertyRef Name="GuestID" />
+          </Key>
+          <Property Name="GuestID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="Phone" Type="nchar" MaxLength="10" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="City" Type="nvarchar" MaxLength="200" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nchar" MaxLength="5" />
+          <Property Name="Relationship" Type="nvarchar" MaxLength="50" />
+          <Property Name="InviteID" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="ConfirmReception" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="ConfirmCeremony" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="InvitedToCeremony" Type="bit" Nullable="false" />
+          <Property Name="PrimaryGuest" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invites">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="RelatedFamily" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Photos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ImageURL" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="Caption" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="MSN" Type="nvarchar" MaxLength="150" />
+          <Property Name="Yahoo" Type="nvarchar" MaxLength="150" />
+          <Property Name="GoogleTalk" Type="nvarchar" MaxLength="150" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Facebook" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="StaticPages">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Content" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_BlogPostComments_BlogPosts">
+          <End Role="BlogPosts" Type="AlexAndNikkiDBModel.Store.BlogPosts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BlogPostComments" Type="AlexAndNikkiDBModel.Store.BlogPostComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogPosts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlogPostComments">
+              <PropertyRef Name="BlogPostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogPosts_Users">
+          <End Role="Users" Type="AlexAndNikkiDBModel.Store.Users" Multiplicity="1" />
+          <End Role="BlogPosts" Type="AlexAndNikkiDBModel.Store.BlogPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="BlogPosts">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profiles_Users">
+          <End Role="Users" Type="AlexAndNikkiDBModel.Store.Users" Multiplicity="1" />
+          <End Role="Profiles" Type="AlexAndNikkiDBModel.Store.Profiles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WeddingInvitees_WeddingInvites">
+          <End Role="Invites" Type="AlexAndNikkiDBModel.Store.Invites" Multiplicity="1" />
+          <End Role="Guests" Type="AlexAndNikkiDBModel.Store.Guests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invites">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Guests">
+              <PropertyRef Name="InviteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlexAndNikkiDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="AlexAndNikkiDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BlogPostComments" EntityType="AlexAndNikkiDBModel.BlogPostComment" />
+          <EntitySet Name="BlogPosts" EntityType="AlexAndNikkiDBModel.BlogPost" />
+          <EntitySet Name="Photos" EntityType="AlexAndNikkiDBModel.Photo" />
+          <EntitySet Name="Profiles" EntityType="AlexAndNikkiDBModel.Profile" />
+          <EntitySet Name="Users" EntityType="AlexAndNikkiDBModel.User" />
+          <AssociationSet Name="FK_BlogPosts_Users" Association="AlexAndNikkiDBModel.FK_BlogPosts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BlogPosts" EntitySet="BlogPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profiles_Users" Association="AlexAndNikkiDBModel.FK_Profiles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Profiles" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogPostComments_BlogPosts" Association="AlexAndNikkiDBModel.FK_BlogPostComments_BlogPosts">
+            <End Role="BlogPost" EntitySet="BlogPosts" />
+            <End Role="BlogPostComment" EntitySet="BlogPostComments" />
+          </AssociationSet>
+          <EntitySet Name="StaticPages" EntityType="AlexAndNikkiDBModel.StaticPage" />
+          <EntitySet Name="Invites" EntityType="AlexAndNikkiDBModel.Invite" />
+          <EntitySet Name="Guests" EntityType="AlexAndNikkiDBModel.Guest" />
+          <AssociationSet Name="FK_WeddingInvitees_WeddingInvites" Association="AlexAndNikkiDBModel.FK_WeddingInvitees_WeddingInvites">
+            <End Role="Invite" EntitySet="Invites" />
+            <End Role="Guest" EntitySet="Guests" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BlogPostComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Website" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="BlogPostId" Nullable="false" />
+          <NavigationProperty Name="BlogPost" Relationship="AlexAndNikkiDBModel.FK_BlogPostComments_BlogPosts" FromRole="BlogPostComment" ToRole="BlogPost" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BlogPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Author" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Summary" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FriendlyUrl" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="AlexAndNikkiDBModel.FK_BlogPosts_Users" FromRole="BlogPosts" ToRole="Users" />
+          <NavigationProperty Name="BlogPostComments" Relationship="AlexAndNikkiDBModel.FK_BlogPostComments_BlogPosts" FromRole="BlogPost" ToRole="BlogPostComment" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageURL" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Caption" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="MSN" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Yahoo" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="GoogleTalk" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Facebook" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="AlexAndNikkiDBModel.FK_Profiles_Users" FromRole="Profiles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="BlogPosts" Relationship="AlexAndNikkiDBModel.FK_BlogPosts_Users" FromRole="Users" ToRole="BlogPosts" />
+          <NavigationProperty Name="Profile" Relationship="AlexAndNikkiDBModel.FK_Profiles_Users" FromRole="Users" ToRole="Profiles" />
+        </EntityType>
+        <Association Name="FK_BlogPosts_Users">
+          <End Role="Users" Type="AlexAndNikkiDBModel.User" Multiplicity="1" />
+          <End Role="BlogPosts" Type="AlexAndNikkiDBModel.BlogPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="BlogPosts">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profiles_Users">
+          <End Role="Users" Type="AlexAndNikkiDBModel.User" Multiplicity="1" />
+          <End Role="Profiles" Type="AlexAndNikkiDBModel.Profile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogPostComments_BlogPosts">
+          <End Type="AlexAndNikkiDBModel.BlogPost" Role="BlogPost" Multiplicity="1" />
+          <End Type="AlexAndNikkiDBModel.BlogPostComment" Role="BlogPostComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogPost">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlogPostComment">
+              <PropertyRef Name="BlogPostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StaticPage">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Invite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RelatedFamily" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Guests" Relationship="AlexAndNikkiDBModel.FK_WeddingInvitees_WeddingInvites" FromRole="Invite" ToRole="Guest" />
+        </EntityType>
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="GuestID" />
+          </Key>
+          <Property Type="Int16" Name="GuestID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="Address" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ZipCode" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="Relationship" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="InviteID" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ConfirmReception" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ConfirmCeremony" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="InvitedToCeremony" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryGuest" Nullable="false" />
+          <NavigationProperty Name="Invite" Relationship="AlexAndNikkiDBModel.FK_WeddingInvitees_WeddingInvites" FromRole="Guest" ToRole="Invite" />
+        </EntityType>
+        <Association Name="FK_WeddingInvitees_WeddingInvites">
+          <End Type="AlexAndNikkiDBModel.Invite" Role="Invite" Multiplicity="1" />
+          <End Type="AlexAndNikkiDBModel.Guest" Role="Guest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Guest">
+              <PropertyRef Name="InviteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AlexAndNikkiDBModelStoreContainer" CdmEntityContainer="AlexAndNikkiDBEntities">
+          <EntitySetMapping Name="BlogPostComments"><EntityTypeMapping TypeName="AlexAndNikkiDBModel.BlogPostComment"><MappingFragment StoreEntitySet="BlogPostComments">
+            <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="BlogPostId" ColumnName="BlogPostId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Website" ColumnName="Website" />
+            <ScalarProperty Name="Comment" ColumnName="Comment" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="BlogPosts"><EntityTypeMapping TypeName="AlexAndNikkiDBModel.BlogPost"><MappingFragment StoreEntitySet="BlogPosts">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Author" ColumnName="Author" />
+            <ScalarProperty Name="Date" ColumnName="Date" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="Body" ColumnName="Body" />
+            <ScalarProperty Name="Summary" ColumnName="Summary" />
+            <ScalarProperty Name="FriendlyUrl" ColumnName="FriendlyUrl" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Photos"><EntityTypeMapping TypeName="AlexAndNikkiDBModel.Photo"><MappingFragment StoreEntitySet="Photos">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+            <ScalarProperty Name="Caption" ColumnName="Caption" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Profiles"><EntityTypeMapping TypeName="AlexAndNikkiDBModel.Profile"><MappingFragment StoreEntitySet="Profiles">
+            <ScalarProperty Name="Username" ColumnName="Username" />
+            <ScalarProperty Name="MSN" ColumnName="MSN" />
+            <ScalarProperty Name="Yahoo" ColumnName="Yahoo" />
+            <ScalarProperty Name="GoogleTalk" ColumnName="GoogleTalk" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Users"><EntityTypeMapping TypeName="AlexAndNikkiDBModel.User"><MappingFragment StoreEntitySet="Users">
+            <ScalarProperty Name="Username" ColumnName="Username" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="StaticPages">
+            <EntityTypeMapping TypeName="AlexAndNikkiDBModel.StaticPage">
+              <MappingFragment StoreEntitySet="StaticPages">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invites">
+            <EntityTypeMapping TypeName="AlexAndNikkiDBModel.Invite">
+              <MappingFragment StoreEntitySet="Invites">
+                <ScalarProperty Name="RelatedFamily" ColumnName="RelatedFamily" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guests">
+            <EntityTypeMapping TypeName="AlexAndNikkiDBModel.Guest">
+              <MappingFragment StoreEntitySet="Guests">
+                <ScalarProperty Name="PrimaryGuest" ColumnName="PrimaryGuest" />
+                <ScalarProperty Name="InvitedToCeremony" ColumnName="InvitedToCeremony" />
+                <ScalarProperty Name="ConfirmCeremony" ColumnName="ConfirmCeremony" />
+                <ScalarProperty Name="ConfirmReception" ColumnName="ConfirmReception" />
+                <ScalarProperty Name="InviteID" ColumnName="InviteID" />
+                <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="AlexAndNikkiDB">
+        <EntityTypeShape EntityType="AlexAndNikkiDBModel.BlogPostComment" Width="1.5" PointX="5.375" PointY="1.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexAndNikkiDBModel.BlogPost" Width="1.5" PointX="3" PointY="1.125" Height="2.5571907552083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexAndNikkiDBModel.Photo" Width="1.5" PointX="9" PointY="1.5" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexAndNikkiDBModel.Profile" Width="1.5" PointX="3" PointY="4.375" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexAndNikkiDBModel.User" Width="1.5" PointX="0.75" PointY="3" Height="1.787985026041667" IsExpanded="true" />
+        <AssociationConnector Association="AlexAndNikkiDBModel.FK_BlogPosts_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.43724609375" />
+          <ConnectorPoint PointX="3" PointY="3.43724609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="AlexAndNikkiDBModel.FK_Profiles_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.5814925130208337" />
+          <ConnectorPoint PointX="3" PointY="4.5814925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="AlexAndNikkiDBModel.FK_BlogPostComments_BlogPosts" >
+          <ConnectorPoint PointX="4.5" PointY="2.5862939453125" />
+          <ConnectorPoint PointX="5.375" PointY="2.5862939453125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="AlexAndNikkiDBModel.StaticPage" Width="1.5" PointX="0.75" PointY="7.75" Height="1.4033821614583353" />
+        <EntityTypeShape EntityType="AlexAndNikkiDBModel.Invite" Width="1.5" PointX="5.375" PointY="6.25" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="AlexAndNikkiDBModel.Guest" Width="1.5" PointX="7.625" PointY="5" Height="4.0956022135416674" />
+        <AssociationConnector Association="AlexAndNikkiDBModel.FK_WeddingInvitees_WeddingInvites" >
+          <ConnectorPoint PointX="6.875" PointY="7.047841796875" />
+          <ConnectorPoint PointX="7.625" PointY="7.047841796875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

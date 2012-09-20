@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<script type="text/javascript">
+    $(function ()
+    {
+        $('#result').parent().show('drop', { direction: 'up' }, 2000);
+    });
+</script>
+<div style="text-align: center; display: none;">
+    <div id="result" class="form" style="width: 500px; text-align: center; font-family: Arial;">
+        <h2>@ViewData["message"]</h2>
+        @if (ViewData["returnUrl"] != null)
+        {
+            <a href="@ViewData["returnUrl"]">Click here to continue. </a>
+        }
+    </div>
+</div>

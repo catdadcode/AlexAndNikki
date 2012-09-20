@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "EnterCode";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<div class="form" style="width: 400px; text-align: center;">
+    <div id="pageTitle">
+        Enter Your Invitation Code
+    </div>
+    @using (Html.BeginForm())
+    {
+        <text>
+        @Html.TextBox("Id", null, new { style = "width: 100px; text-align: center;" })
+        <br />
+        <br />
+        <input type="submit" value="Find My Invitation" />
+        </text>
+    }
+</div>

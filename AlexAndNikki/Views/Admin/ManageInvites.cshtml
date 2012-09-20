@@ -1,0 +1,117 @@
+﻿@model IEnumerable<AlexAndNikki.Models.Invite>
+@using AlexAndNikki.Models;
+@{
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<script type="text/javascript">
+    $(function ()
+    {
+        $('.deleteInvite').click(function (e)
+        {
+            if (!confirm('Are you sure you want to delete this invite and all its guests?'))
+            {
+                e.preventDefault();
+                return false;
+            }
+        });
+    });
+</script>
+<style type="text/css">
+    table#invites
+    {
+        margin: auto;
+        border: solid 1px #aa0000;
+        background-color: #ffffff;
+    }
+    table#invites td
+    {
+        text-align: center;
+    }
+    table#invites th
+    {
+        font-family: Arial;
+    }
+    table#invites table.options td
+    {
+        padding: 0px 10px 0px 10px;
+    }
+</style>
+<div>
+    @Html.ActionLink("<< Back to Administration Panel", "Index")
+</div>
+<div id="pageTitle">
+    Manage Wedding Invites
+</div>
+<div style="text-align: center; font-weight: bold;">
+    @Model.Count() Invite(s)
+</div>
+<table id="invites" border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        <td colspan="4" style="text-align: center;">
+            <a id="AddNew" href="@Url.Action("AddInvite")">
+                <img style="width: 20px; border: none;" src="@Url.Content("~/Content/images/addnew.png")" />
+                Create New Invite</a>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Invite Code
+        </th>
+        <th>
+            Related Family
+        </th>
+        <th>
+            Primary Guests
+        </th>
+        <th>
+            Options
+        </th>
+    </tr>
+    @foreach (Invite invite in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(invite.Id, "RSVP", "Wedding", new { Id = invite.Id }, null)
+            </td>
+            <td>
+                @invite.RelatedFamily
+            </td>
+            <td>
+                @{var guests = invite.Guests.Where(x => x.PrimaryGuest).AsEnumerable();}
+                @foreach (Guest guest in guests)
+                {
+                    <div>
+                        @guest.FullName()
+                    </div>
+                }
+                @if (guests.Count() == 0)
+                {
+                    <div>
+                        No primary guests have been added to this invite.
+                    </div>   
+                }
+            </td>
+            <td style="text-align: center;">
+                <table class="options" style="margin: auto;">
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("ManageGuests", new { Id = invite.Id })">
+                                <img title="Manage Guests" style="width: 20px; border: none;" src="@Url.Content("~/Content/images/manageguests.png")" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("EditInvite", new { Id = invite.Id })">
+                                <img title="Edit Invite" style="width: 20px; border: none;" src="@Url.Content("~/Content/images/edit.png")" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("DeleteInvite", new { Id = invite.Id })" class="deleteInvite">
+                                <img title="Delete Invite" style="width: 20px;border: none;" src="@Url.Content("~/Content/images/delete.gif")" />
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    }
+</table>

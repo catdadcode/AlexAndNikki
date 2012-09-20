@@ -1,0 +1,59 @@
+﻿@model AlexAndNikki.Models.Invite
+@using AlexAndNikki.Models;
+@{
+    ViewBag.Title = "RSVP";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<style type="text/css">
+    table#rsvpform td, table#rsvpform th
+    {
+        text-align: left;
+    }
+    table#rsvpform tr
+    {
+        border: solid 1px #000000;
+    }
+    table#rsvpform
+    {
+        margin: auto;
+        borer: solid 1px #000000;
+        border-radius: 25px;
+    }
+</style>
+<div id="pageTitle">
+    You Have Been Invited To The Wedding!
+</div>
+<div class="form" style="width: 500px; text-align: center;">
+    <div style="padding: 10px; font-size: 20px; font-family: Arial; color: #aa0000;">
+        Please take a moment to tell us your plans.
+    </div>
+    <br />
+    @using (Html.BeginForm("SaveRSVP", "Wedding"))
+    {
+        @Html.HiddenFor(x => x.Id)
+        <table cellpadding="15px" cellspacing="0" id="rsvpform">
+            <tr>
+                <th>
+                    Name
+                </th>
+                @if (Model.Guests.Any(x => x.InvitedToCeremony))
+                {
+                    <th>
+                        Attending Ceremony?
+                    </th>
+                }
+                <th>
+                    Attending Reception?
+                </th>
+            </tr>
+            @Html.EditorFor(x => x.Guests)
+        </table>
+        <br />
+        <span>Are you planning on bringing additional guests?</span><br />
+        <a href="@Url.Action("AddGuest", new { Id = Model.Id })">
+            <img style="width:20px; border: none;" src="@Url.Content("~/Content/images/addnew.png")" />
+            Add A Guest</a><br />
+        <br />
+        <input type="submit" value="Save Responses" />
+    }
+</div>

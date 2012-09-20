@@ -1,0 +1,42 @@
+﻿@model AlexAndNikki.Models.Guest
+
+<tr>
+    <td>
+        @Html.HiddenFor(x => x.GuestID)
+        @Model.FullName()
+    </td>
+    @if (Model.Invite.Guests.Any(x => x.InvitedToCeremony))
+    {
+        <td>
+            @if (Model.InvitedToCeremony)
+            {
+                <text>
+                @Html.DropDownListFor(x => x.ConfirmCeremony, new SelectList(new Dictionary<string, string>
+                {
+                    {"No Answer", "No Answer"},
+                    {"Yes", "Yes"},
+                    {"No", "No"},
+                    {"Maybe", "Maybe"}
+                }, "key", "value", Model.ConfirmCeremony))
+                @Html.ValidationMessageFor(x => x.ConfirmCeremony)
+                </text>
+            }
+            else
+            {
+                <text>
+                    No more seats available.
+                </text>
+            }
+        </td>
+    }
+    <td>
+        @Html.DropDownListFor(x => x.ConfirmReception, new SelectList(new Dictionary<string, string>
+        {
+            {"No Answer", "No Answer"},
+            {"Yes", "Yes"},
+            {"No", "No"},
+            {"Maybe", "Maybe"}
+        }, "key", "value", Model.ConfirmReception))
+        @Html.ValidationMessageFor(x => x.ConfirmReception)
+    </td>
+</tr>

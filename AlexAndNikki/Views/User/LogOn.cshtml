@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<div class="form" style="width: 305px; font-family: Arial;">
+    @using (Html.BeginForm())
+    {
+        <text> Username:<br />
+        @Html.TextBox("Username", null, new { style = "width:300px;" })
+        <br />
+        Password:<br />
+        @Html.Password("Password", null, new { style = "width:300px;" })
+        <br />
+        <input type="submit" value="Log On" />
+        </text>
+    }
+</div>

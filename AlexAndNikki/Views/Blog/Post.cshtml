@@ -1,0 +1,70 @@
+﻿@model AlexAndNikki.Models.BlogPost
+@using AlexAndNikki.Helpers;
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<style type="text/css">
+    .fb_ltr
+    {
+        width: 100% !important;   
+    }
+    .fb_iframe_widget
+    {
+        width: 75%;
+    }
+</style>
+@if (Model != null)
+{
+    <text>
+    <div class="postTitle">@Model.Title</div>
+    <div class="subInfo">
+        Posted by @Html.ActionLink(Model.Author, "Profile", "User", new { Id = Model.Author }, null)
+        on @Model.Date.ToString("D")
+    </div>
+    <fb:like></fb:like>
+    <br />
+    <br />
+    @Html.Raw(Model.Body.FormatBody())
+    <br />
+    <br />
+    <div id="fb-root"></div><fb:comments href="@Request.Url.AbsoluteUri" num_posts="15" width="900"></fb:comments>
+    @*@Model.BlogPostComments.Count <span>comment(s).</span>
+    <br />
+    <br />
+    @foreach (AlexAndNikki.Models.BlogPostComment comment in Model.BlogPostComments.OrderBy(x => x.Date))
+    {
+        Html.RenderPartial("PostComment", comment);
+    }
+    <br />
+    <br />
+    <div class="addComment">
+        @using (Html.BeginForm("AddComment", "Blog", new { BlogId = Model.Id }, FormMethod.Post))
+        {
+            <text> Name:
+            <br />
+            @Html.TextBox("Name", null, new { style = "width:400px;" })
+            <br />
+            <br />
+            Website (optional):
+            <br />
+            @Html.TextBox("Website", null, new { style = "width:400px;" })
+            <br />
+            <br />
+            Comment:
+            <br />
+            @Html.TextArea("Comment", null, new { style = "width:400px;height:150px;" })
+            <br />
+            <br />
+            <input type="submit" value="Post Comment" />
+            </text>
+        }
+    </div>*@
+    </text>
+}
+else
+{
+    <h2>
+        Blog Not Found
+    </h2>
+}

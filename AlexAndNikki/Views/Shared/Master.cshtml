@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title | Alex & Nikki</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/jquery-ui-1.8.6.custom.css")" rel="stylesheet"
+        type="text/css" />
+    @*<script src="https://www.google.com/jsapi?key=ABQIAAAA4DHp-LRMKl4jXSFVNbkfHhTeNRUAsbNRigPY5tKqDTQSbUw7VRTTFrLpKK-fr-h0WjpGwRRNqlWzOQ" type="text/javascript"></script>*@
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+    <script type="text/javascript">
+        @*google.load("jquery", "1.4.4");
+        google.load("jqueryui", "1.8.9");*@
+        var rootPath = '@Url.Content("~/")';
+        $(function ()
+        {
+            @if (ViewData["SelectedLink"] != null)
+            {
+                <text>
+                    $('#@ViewData["SelectedLink"]').addClass('navLinkSelected');
+                </text>
+            }
+        });
+    </script>
+    <script src="@Url.Content("~/Scripts/Master.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/CooQuery.js")" type="text/javascript"></script>
+</head>
+<body>
+    <div id="frame">
+        <div id="banner">
+            <a href="@Url.Action("Index", "Blog")">
+                <img id="AlexAndNikkiBanner" style="position: absolute; left: 0px; bottom: 0px; z-index: 3;"
+                    src="@Url.Content("~/Content/images/AlexAndNikkiBanner.png")" />
+            </a>
+            <img class="bannerImage" style="height: 125px; top: 0px; left: 25px; z-index: 1;"
+                src="@Url.Content("~/Content/images/resized-DSC_0145.JPG")" />
+            <img class="bannerImage" style="height: 150px; top: 7px; left: 200px; z-index: 2;"
+                src="@Url.Content("~/Content/images/resized-DSC_0070.JPG")" />
+            <img class="bannerImage" style="height: 115px; top: 50px; left: 285px; z-index: 1;"
+                src="@Url.Content("~/Content/images/resized-cheekkiss.JPG")" />
+            <img class="bannerImage" style="height: 175px; top: 10px; left: 500px; z-index: 1;"
+                src="@Url.Content("~/Content/images/resized-DSC_0036.JPG")" />
+            <img class="bannerImage" style="height: 175px; top: 50px; left: 615px; z-index: 2;"
+                src="@Url.Content("~/Content/images/resized-DSC_0019.JPG")" />
+            <img class="bannerImage" style="height: 175px; top: 10px; left: 730px; z-index: 3;"
+                src="@Url.Content("~/Content/images/resized-DSC_0028.JPG")" />
+            <img class="bannerImage" style="height: 175px; top: 50px; left: 845px; z-index: 4;"
+                src="@Url.Content("~/Content/images/resized-DSC_0161.JPG")" />
+        </div>
+        <div id="nav">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        <a id="Blog" href="@Url.Content("~/Blog")">Blog</a>
+                    </td>
+                    <td>
+                        <a id="PhotosAndVideo" href="@Url.Content("~/PhotosAndVideo")">Wedding Photos & Video</a>
+                    </td>
+                    @*<td>
+                        <a id="Photos" href="@Url.Content("~/Photos")">Photos</a>
+                    </td>*@
+                    @*<td>
+                        <a id="WeddingInformation" href="@Url.Content("~/Wedding/Information")">Wedding Information</a>
+                    </td>
+                    <td>
+                        <a id="WeddingRSVP" href="@Url.Content("~/Wedding/RSVP")">RSVP</a>
+                    </td>*@
+                    @*<td>
+                        <a id="About" href="@Url.Content("~/Framework/About")">About</a>
+                    </td>*@
+                </tr>
+            </table>
+        </div>
+        <div id="mainContent">
+            @RenderBody()
+        </div>
+        <div id="footer">
+            <a href="@Url.Action("Index", "Admin")">
+                <img style="width: 25px; border-width: 0px;" src="@Url.Content("~/Content/images/admin.jpg")" /></a>
+        </div>
+    </div>
+</body>
+</html>
